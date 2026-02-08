@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для Алёны ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(120deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.page.active {
+  display: flex;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.yes {
+  background: #00ffb3;
+  color: black;
+}
+
+.no {
+  background: #ff3b3b;
+  position: absolute;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page active" id="p1">
+  <h1>Алёна, ты меня любишь? 💖</h1>
+  <button class="yes" onclick="next(2)">ДА</button>
+  <button class="no" id="no">НЕТ</button>
+</div>
+
+<div class="page" id="p2">
+  <h2>Ребус 🧩</h2>
+  <p>Фраза из 5 слов ❤️</p>
+  <input id="answer" placeholder="Введи ответ">
+  <button class="yes" onclick="check()">Проверить</button>
+</div>
+
+<div class="page" id="p3">
+  <h2>🐈‍⬛ Привет, киса</h2>
+  <p>
+    Я очень жду встречи с тобой.  
+    Очень жду лета, чтобы приехать,  
+    обнять тебя и поцеловать.
+  </p>
+  <button class="yes" onclick="next(4)">
+    Киса Алёночка моя любимая 💖
+  </button>
+</div>
+
+<div class="page" id="p4">
+  <h2>Для тебя ❤️</h2>
+  <p>
+    Ты — мой самый тёплый человек.  
+    С каждым днём я люблю тебя сильнее.  
+    Ты мой дом, мой свет и моя кошка.
+  </p>
+  <button class="yes" onclick="next(5)">Дальше</button>
+</div>
+
+<div class="page" id="p5">
+  <h2>С днём святого Валентина 💌</h2>
+  <p>
+    Мы прошли многое и уже 11 месяцев вместе.  
+    Мы любим, ценим и выбираем друг друга.  
+    Идём дальше — вместе.
+  </p>
+  <button class="yes" onclick="next(6)">💖</button>
+</div>
+
+<div class="page" id="p6">
+  <h1>
+    Я люблю тебя очень сильно, киса ❤️  
+    С днём Валентина,  
+    моя самая лучшая и любимая девочка.
+  </h1>
+</div>
+
+<script>
+function next(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('p' + n).classList.add('active');
+}
+
+function check() {
+  let v = document.getElementById('answer').value.toLowerCase().replace(/\s+/g,'');
+  if (v === 'ялюблютебямоякошка') {
+    next(3);
+  } else {
+    alert('Подумай ещё ❤️');
+  }
+}
+
+const no = document.getElementById('no');
+no.addEventListener('touchstart', moveNo);
+no.addEventListener('mouseover', moveNo);
+
+function moveNo() {
+  no.style.left = Math.random() * 80 + '%';
+  no.style.top = Math.random() * 80 + '%';
+}
+
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerHTML = '❤️';
+  h.style.left = Math.random() * 100 + 'vw';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+</html>
